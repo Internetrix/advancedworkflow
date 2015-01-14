@@ -10,7 +10,7 @@ branch of the repository.
 
 A module that provides an action / transition approach to workflow, where a
 single workflow process is split into multiple configurable states (Actions)
-with multiple possible transitions between the actions.
+with multiple possible transitions between the actions..
 
 ## Requirements
 
