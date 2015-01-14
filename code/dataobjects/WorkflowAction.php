@@ -261,11 +261,4 @@ class WorkflowAction extends DataObject {
 		return $fields;
 	}
 	
-	public function ExportableFields(){
-		$fields = ArrayList::create();
-		foreach($this->db() as $key => $value) {
-			$fields->push(ArrayData::create(array( 'Name' => $key, 'Value' => $this->$key )));
-		}
-		return $fields;
-	}
 }
