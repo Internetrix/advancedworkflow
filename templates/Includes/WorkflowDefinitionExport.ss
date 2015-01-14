@@ -39,7 +39,7 @@ Injector:
             EmailFrom: '$EmailFrom'
             <% end_if %>
             <% if $EmailTemplate %>
-            EmailTemplate: '$EmailTemplate'
+            EmailTemplate: '$EmailTemplate.RAW'
             <% end_if %>
           <% else_if $ClassName == 'AssignUsersToWorkflowAction' %>
           properties:
