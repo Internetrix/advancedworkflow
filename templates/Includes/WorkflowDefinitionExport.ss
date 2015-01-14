@@ -30,6 +30,21 @@ Injector:
 	  <% loop ExportActions %>
         '$Title':
           type: $ClassName
+          <% if $ClassName == 'NotifyUsersWorkflowAction' %>
+          properties:
+          	<% if $EmailSubject %>
+            EmailSubject: '$EmailSubject'
+            <% end_if %>
+            <% if $EmailFrom %>
+            EmailFrom: '$EmailFrom'
+            <% end_if %>
+            <% if $EmailTemplate %>
+            EmailTemplate: '$EmailTemplate'
+            <% end_if %>
+          <% else_if $ClassName == 'AssignUsersToWorkflowAction' %>
+          properties:
+            AssignInitiator: '$AssignInitiator'
+          <% end_if %>
 		  <% if Users %>
           users:
 		  <% loop Users %>

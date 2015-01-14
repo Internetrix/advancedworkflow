@@ -252,4 +252,20 @@ class WorkflowAction extends DataObject {
 	public function Icon() {
 		return $this->stat('icon');
 	}
+	
+	public function ExportableFields(){
+		$fields = ArrayList::create(); 
+		foreach($this->db() as $key => $value) {
+			$fields->push(ArrayData::create(array( 'Name' => $key, 'Value' => $this->$key )));
+		} 
+		return $fields;
+	}
+	
+	public function ExportableFields(){
+		$fields = ArrayList::create();
+		foreach($this->db() as $key => $value) {
+			$fields->push(ArrayData::create(array( 'Name' => $key, 'Value' => $this->$key )));
+		}
+		return $fields;
+	}
 }
