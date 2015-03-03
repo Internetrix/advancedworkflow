@@ -14,7 +14,8 @@ class WorkflowReminderTask extends BuildTask {
 		$sent   = 0;
 		$filter = '"WorkflowStatus" IN (\'Active\', \'Paused\') AND "RemindDays" > 0';
 		$join   = 'INNER JOIN "WorkflowDefinition" ON "DefinitionID" = "WorkflowDefinition"."ID"';
-		$active = DataObject::get('WorkflowInstance', $filter, null, $join);
+		$active = DataObject::get('WorkflowInstance', $filter, null);
+		$active = $active->innerJoin("WorkflowDefinition", '"DefinitionID" = "WorkflowDefinition"."ID"');
 
 		if ($active) foreach ($active as $instance) {
 			$edited = strtotime($instance->LastEdited);
