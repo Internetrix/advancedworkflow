@@ -136,7 +136,7 @@ class WorkflowApplicable extends DataExtension {
 	public function updateCMSActions(FieldList $actions) {
 		$active = $this->workflowService->getWorkflowFor($this->owner);
 		$c = Controller::curr();
-		if ($c && $c->hasExtension('AdvancedWorkflowExtension')) {
+		if ($c && $c->hasExtension('AdvancedWorkflowExtension') || ($c instanceof ModelAdmin && Object::has_extension('GridFieldDetailForm_ItemRequest', 'AdvancedWorkflowExtension'))) {
 			if ($active) {
 				if ($this->canEditWorkflow()) {
 					$workflowOptions = new Tab(
