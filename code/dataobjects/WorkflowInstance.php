@@ -180,12 +180,16 @@ class WorkflowInstance extends DataObject {
 	public function getTarget() {
 		if($this->TargetID && $this->TargetClass) {
 			$versionable = Injector::inst()->get($this->TargetClass)->has_extension('Versioned');
+			$stage = Versioned::current_stage();
 			if($versionable) {
 				Versioned::set_reading_mode("Stage.Stage");
 			}
 
+			$target = DataObject::get_by_id($this->TargetClass, $this->TargetID);
+            		Versioned::set_reading_mode("Stage.".$stage);
+
 			// Default
-			return DataObject::get_by_id($this->TargetClass, $this->TargetID);
+			return $target;
 		}
 	}
 
